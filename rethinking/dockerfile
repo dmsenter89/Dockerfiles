@@ -1,0 +1,11 @@
+FROM rocker/rstudio:4.2.1
+
+RUN install2.r -e -s -n 2 \
+	coda \
+	mvtnorm \
+	devtools \
+	loo \
+	dagitty \
+	&& rm -rf /tmp/downloaded_packages
+
+RUN R -e 'devtools::install_github("rmcelreath/rethinking@slim")'
